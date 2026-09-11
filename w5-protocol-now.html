@@ -162,4 +162,16 @@ hit.addEventListener('pointermove',function(ev){var b=svg.getBoundingClientRect(
 hit.addEventListener('pointerleave',function(){tip.hidden=true;cx.setAttribute('visibility','hidden');dt.setAttribute('visibility','hidden')});
 svg.setAttribute('aria-label','Hylo TVL: peak '+mln(T[ip][1])+' on '+dl(T[ip][0])+', now '+mln(T[inow][1]));})();
 </script>
+<script data-fit>
+(function(){if(window.self===window.top)return;var m=document.querySelector('.mw');if(!m)return;
+var st=document.createElement('style');st.textContent='html,body{overflow:hidden}.mw{display:flex;flex-direction:column;box-sizing:border-box}.mw>.ft{margin-top:auto}';document.head.appendChild(st);
+function fit(){m.style.transform='';m.style.width='';m.style.minHeight='';var V=window.innerHeight;if(V<80)return;
+ var s=1,H=m.scrollHeight;if(H<=V+1){m.style.minHeight=V+'px';return}
+ for(var i=0;i<3;i++){s=Math.min(1,s*V/H);m.style.width=(100/s)+'%';H=m.scrollHeight*s;if(Math.abs(H-V)<2)break}
+ m.style.transformOrigin='0 0';m.style.transform='scale('+s+')'}
+var t;function later(){clearTimeout(t);t=setTimeout(fit,60)}
+window.addEventListener('resize',later);window.addEventListener('load',fit);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);setTimeout(fit,300);setTimeout(fit,1200);
+new MutationObserver(later).observe(m,{childList:true,subtree:true});})();
+</script>
 </body></html>
