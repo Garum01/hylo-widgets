@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hylo · $1,000 in SOL vs xSOL</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"><style>html,body{margin:0;background:transparent}[hidden]{display:none!important}
+.mw{--bg:#fff;--card:#f7f5fc;--text:#14151a;--body:#3b4049;--sub:#68707b;--muted:#8b8f99;--line:#e8e8ed;--grid:#efeff4;--accent:#6c42eb;--accent-soft:#6c42eb14;--lav:#f6f3ff;--green:#0fa968;--red:#e24b4a;--warn:#b7791f;--sol:#c2711d;--stable:#ddddec;
+ position:relative;overflow:hidden;background:var(--bg);border:1px solid var(--line);color:var(--body);font:14px/1.45 Geist,system-ui,-apple-system,"Segoe UI",sans-serif}
+.mw *{box-sizing:border-box;min-width:0}
+.mw .hd{padding:26px 32px 12px}
+.mw .kick{margin:0 0 9px;color:var(--accent);font:600 11px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.mw h3{margin:0;color:var(--text);font:700 25px/1.1 Geist,system-ui,sans-serif;letter-spacing:-.03em;text-wrap:balance}
+.mw .sub{margin:8px 0 0;max-width:70ch;color:var(--sub);font-size:13.5px}
+.mw .body{padding:8px 32px 16px}
+.mw .cards{display:grid;gap:10px}
+.mw .c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mw .c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.mw .card{border:1px solid var(--line);background:var(--card);padding:13px 15px 12px}
+.mw .lbl{display:block;color:var(--muted);font:600 10px/1.25 "IBM Plex Mono",monospace;letter-spacing:.04em;text-transform:uppercase}
+.mw .num{display:block;margin-top:7px;color:var(--text);font:700 23px/1 Geist,system-ui,sans-serif;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.mw .sm{display:block;margin-top:6px;color:var(--sub);font-size:11.5px}
+.mw .note{margin:0;padding:6px 32px 14px;color:#747b86;font-size:12px}
+.mw .ft{display:flex;justify-content:flex-end;align-items:center;border-top:1px solid var(--line);padding:9px 20px}
+.mw .mr{display:inline-flex;align-items:center;gap:4px;color:var(--text);font:12px/1 Geist,system-ui,sans-serif;white-space:nowrap}
+.mw .mr b{color:var(--accent);font-weight:700}.mw .mr i{font-weight:600}
+.mw .eye{display:block;width:15px;height:15px;flex:none}
+.mw .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line)}
+.mw .seg button{appearance:none;border:0;border-right:1px solid var(--line);background:#fff;padding:8px 12px;color:var(--body);font:600 12px/1.2 Geist,system-ui,sans-serif;cursor:pointer;font-variant-numeric:tabular-nums}
+.mw .seg button:last-child{border-right:0}
+.mw .seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+.mw button:focus-visible,.mw input:focus-visible,.mw summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mw .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.mw .legend{display:flex;gap:14px;color:var(--body);font-size:12.5px}
+.mw .legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+/* chart */
+.mw .chart{position:relative;margin-top:14px}
+.mw .chart svg{display:block;width:100%;height:auto;overflow:visible}
+.mw .gr{stroke:var(--grid);stroke-width:1}
+.mw .tkl{stroke:var(--line);stroke-width:1}
+.mw .ax{fill:var(--muted);font:500 10.5px "IBM Plex Mono",monospace}
+.mw .ev{stroke:#b9b3cf;stroke-width:1;stroke-dasharray:3 3}
+.mw .evl{fill:var(--sub);font:600 10.5px "IBM Plex Mono",monospace}
+.mw .ln{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.mw .ln.xs{stroke:var(--accent)}.mw .ln.sol{stroke:var(--sol)}
+.mw .ar{fill:var(--accent);fill-opacity:.1}
+.mw .dot{stroke:#fff;stroke-width:2}.mw .dot.xs{fill:var(--accent)}.mw .dot.sol{fill:var(--sol)}
+.mw .lb{fill:var(--text);font:600 12px Geist,system-ui,sans-serif}
+.mw .lbm{fill:var(--sub);font:500 11px Geist,system-ui,sans-serif}
+.mw .cx{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3}
+.mw .tip{position:absolute;z-index:2;display:grid;gap:3px;padding:8px 10px;background:#fff;border:1px solid var(--line);box-shadow:0 4px 14px rgba(20,21,26,.08);color:var(--text);font-size:12px;white-space:nowrap;pointer-events:none}
+.mw .tip b{font-weight:600}
+.mw .tip span{display:flex;align-items:center;gap:6px;color:var(--body);font-variant-numeric:tabular-nums}
+.mw .tip i{display:inline-block;width:8px;height:8px}.mw .tip i.xs{background:var(--accent)}.mw .tip i.sol{background:var(--sol)}
+.mw .scl{margin:8px 0 0;color:var(--muted);font-size:11.5px}
+.mw details{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.mw summary{cursor:pointer;color:var(--accent);font:600 12px Geist,system-ui,sans-serif}
+.mw .twrap{overflow-x:auto;margin-top:8px}
+.mw table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+.mw th{text-align:left;color:var(--muted);font:600 10px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.04em;padding:6px 8px;border-bottom:1px solid var(--line)}
+.mw td{padding:5px 8px;border-bottom:1px solid var(--grid);color:var(--text)}
+.mw td+td,.mw th+th{text-align:right}
+/* w1 stack */
+.mw .rng{display:flex;align-items:center;gap:10px}
+.mw .rng input{width:200px;accent-color:var(--accent)}
+.mw .rng output{min-width:48px;color:var(--text);font:700 14px Geist,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.mw .stack{margin:20px 0 8px}
+.mw .trk{position:relative;height:46px;background:var(--card);border:1px solid var(--line)}
+.mw .s-st,.mw .s-x{position:absolute;top:0;bottom:0;display:flex;align-items:center;overflow:hidden;white-space:nowrap;transition:width .25s ease}
+.mw .s-st{left:0;width:41.667%;background:var(--stable)}
+.mw .s-x{left:calc(41.667% + 2px);background:var(--accent)}
+.mw .s-st span,.mw .s-x span{padding:0 10px;font:600 12px Geist,system-ui,sans-serif}
+.mw .s-st span{color:var(--text)}.mw .s-x span{color:#fff}
+.mw .start{position:absolute;top:-6px;bottom:-6px;left:62.5%;border-left:1.5px dashed var(--text);opacity:.5}
+.mw .axis{position:relative;height:16px;margin-top:6px}
+.mw .axis span{position:absolute;transform:translateX(-50%);color:var(--muted);font:500 10.5px "IBM Plex Mono",monospace}
+.mw .axis span:first-child{transform:none}.mw .axis span:last-child{transform:translateX(-100%)}
+/* w2 assets */
+.mw .assets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mw .asset{display:grid;align-content:start;border:1px solid var(--line);background:#fff}
+.mw .asset .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:12px 14px 10px;background:var(--card);border-bottom:1px solid var(--line)}
+.mw .asset .nm{color:var(--text);font:700 18px/1 Geist,system-ui,sans-serif;letter-spacing:-.02em}
+.mw .asset .col{color:var(--muted);font:500 10.5px "IBM Plex Mono",monospace;text-align:right}
+.mw .kv{display:grid;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.mw .kv:last-child{border-bottom:0}
+.mw .kv .v{color:var(--text);font:700 17px/1 Geist,system-ui,sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.mw .kv .v small{margin-left:6px;color:var(--warn);font:600 10px "IBM Plex Mono",monospace;letter-spacing:.03em;text-transform:uppercase}
+.mw .ob{position:relative;height:6px;background:var(--grid)}
+.mw .ob i{position:absolute;left:0;top:0;bottom:0;background:var(--accent)}
+.mw .band{position:relative;height:16px}
+.mw .band .tr{position:absolute;left:0;right:0;top:7px;height:2px;background:var(--grid)}
+.mw .band .rg{position:absolute;top:5px;height:6px;background:#d9cbff}
+.mw .band .mk{position:absolute;top:1px;width:2px;height:14px;background:var(--text)}
+/* w4 stepper */
+.mw .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:14px;border:1px solid var(--line)}
+.mw .step{appearance:none;display:flex;gap:8px;align-items:flex-start;border:0;border-right:1px solid var(--line);background:#fff;padding:11px 12px;color:var(--body);font:600 12px/1.25 Geist,system-ui,sans-serif;text-align:left;cursor:pointer}
+.mw .step:last-child{border-right:0}
+.mw .step b{flex:none;display:inline-grid;place-items:center;width:19px;height:19px;border:1px solid var(--line);border-radius:50%;color:var(--muted);font:600 9.5px/1 "IBM Plex Mono",monospace}
+.mw .step[aria-current="step"]{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+.mw .step[aria-current="step"] b{border-color:var(--accent);color:var(--accent)}
+.mw .stage{display:grid;gap:14px;padding:18px 20px 16px;border:1px solid var(--line);border-top:0}
+.mw .phase{color:var(--accent);font:600 10px/1.2 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
+.mw .stage h4{margin:5px 0 0;color:var(--text);font:700 19px/1.2 Geist,system-ui,sans-serif;letter-spacing:-.02em;text-wrap:balance}
+.mw .stage p{margin:0;max-width:70ch}
+.mw .who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line)}
+.mw .who>div{padding:10px 12px;border-right:1px solid var(--line);background:#fcfcfd}
+.mw .who>div:last-child{border-right:0}
+.mw .who .lbl{margin-bottom:6px}
+.mw .stt{display:flex;gap:6px;align-items:baseline;color:var(--text);font-size:12.5px}
+.mw .stt::before{flex:none;font:700 11px "IBM Plex Mono",monospace}
+.mw .stt.ok::before{content:"✓";color:var(--green)}.mw .stt.bad::before{content:"↓";color:var(--red)}.mw .stt.warn::before{content:"!";color:var(--warn)}.mw .stt.neu::before{content:"–";color:var(--muted)}
+.mw .next{justify-self:end;appearance:none;border:1px solid var(--line);background:#fff;padding:7px 12px;color:var(--accent);font:600 12px Geist,system-ui,sans-serif;cursor:pointer}
+/* w6 flow */
+.mw .flow{display:grid;grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr) 30px minmax(0,1fr)}
+.mw .node{border:1px solid var(--line);background:var(--card);padding:14px 15px}
+.mw .node.hl{background:var(--lav);border-color:#d9cbff}
+.mw .node .n{color:var(--accent);font:600 10px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.mw .node h4{margin:6px 0;color:var(--text);font:700 16px/1.2 Geist,system-ui,sans-serif;letter-spacing:-.01em}
+.mw .node p{margin:0;font-size:12.5px}
+.mw .arr{display:grid;place-items:center;color:var(--muted);font:600 14px "IBM Plex Mono",monospace}
+.mw .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.mw .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.mw .ch{padding:6px 8px;border:1px solid var(--line);background:#fff;color:var(--body);font:600 11px/1 "IBM Plex Mono",monospace}
+.mw .ch.live{border-color:#bfe8d6;background:#f1faf6;color:#0b7a4c}
+.mw .ch.plan{border-style:dashed;color:var(--sub)}
+@media(max-width:700px){.mw .hd{padding:20px 18px 10px}.mw .body{padding:6px 18px 14px}.mw .note{padding:6px 18px 12px}.mw h3{font-size:21px}
+ .mw .c4{grid-template-columns:repeat(2,minmax(0,1fr))}.mw .c3,.mw .assets,.mw .row2{grid-template-columns:1fr}
+ .mw .steps{grid-template-columns:repeat(2,minmax(0,1fr))}.mw .step:nth-child(2){border-right:0}.mw .step:nth-child(-n+2){border-bottom:1px solid var(--line)}
+ .mw .who{grid-template-columns:1fr}.mw .who>div{border-right:0;border-bottom:1px solid var(--line)}.mw .who>div:last-child{border-bottom:0}
+ .mw .flow{grid-template-columns:1fr}.mw .arr{height:26px;transform:rotate(90deg)}.mw .rng input{width:150px}}
+@media(prefers-reduced-motion:reduce){.mw *{transition:none!important}}
+</style></head><body>
+<div class="mw" id="w3">
+<style>#w3 .tip em{display:block;margin:1px 0 3px 18px;color:var(--muted);font-style:normal;font-size:11.5px;font-variant-numeric:tabular-nums}</style>
+ <div class="hd"><p class="kick">Track record · xSOL</p><h3>What $1,000 turned into</h3><p class="sub">$1,000 in SOL vs $1,000 in xSOL, starting April 2025.</p></div>
+ <div class="body">
+  <div class="row"><div class="seg" role="group" aria-label="Period"><button type="button" data-v="all" aria-pressed="true">All time</button><button type="button" data-v="v2" aria-pressed="false">Since V2 launch</button></div>
+   <div class="legend"><span><i style="background:var(--accent)"></i>xSOL</span><span><i style="background:var(--sol)"></i>SOL</span></div></div>
+  <div class="cards c3" data-tiles style="margin-top:14px"></div>
+  <div class="chart"><svg viewBox="0 0 760 300" role="img"></svg><div class="tip" hidden></div></div>
+ </div>
+ <p class="note">Prices: Hylo and DefiLlama. Weekly closes for “All time” (log scale), daily closes for “Since V2 launch”. No fees or staking yield included.</p>
+ <div class="ft"><span class="mr"><svg class="eye" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 32c6.3-7.4 13.8-11.2 22-11.2S47.7 24.6 54 32c-6.3 7.4-13.8 11.2-22 11.2S16.3 39.4 10 32Z" fill="none" stroke="#6C42EB" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="9" fill="none" stroke="#6C42EB" stroke-width="3"/></svg><b>moni</b><i>research</i></span></div>
+</div>
+<script>
+(function(){var D={"w":{"days":["2025-04-17","2025-04-24","2025-05-01","2025-05-08","2025-05-15","2025-05-22","2025-05-29","2025-06-05","2025-06-12","2025-06-19","2025-06-26","2025-07-03","2025-07-10","2025-07-17","2025-07-24","2025-07-31","2025-08-07","2025-08-14","2025-08-21","2025-08-28","2025-09-04","2025-09-11","2025-09-18","2025-09-25","2025-10-02","2025-10-09","2025-10-16","2025-10-23","2025-10-30","2025-11-06","2025-11-13","2025-11-20","2025-11-27","2025-12-04","2025-12-11","2025-12-18","2025-12-25","2026-01-01","2026-01-08","2026-01-15","2026-01-22","2026-01-29","2026-02-05","2026-02-12","2026-02-19","2026-02-26","2026-03-05","2026-03-12","2026-03-19","2026-03-26","2026-04-02","2026-04-09","2026-04-16","2026-04-23","2026-04-30","2026-05-07","2026-05-14","2026-05-21","2026-05-28","2026-06-04","2026-06-11","2026-06-18","2026-06-25","2026-07-02","2026-07-09","2026-07-16","2026-07-23","2026-07-30","2026-08-06","2026-08-13","2026-08-20","2026-08-27","2026-09-03","2026-09-10","2026-09-11"],"sol":[131.37,151.08,147.69,147.2,176.47,173.92,172.29,153.49,161.07,146.31,143.47,152.292,157.22,173.86,189.6,177.81,168.17,201.65,187.52,202.87,210.72,224.04,244.86,211.65,221.72,229.052,193.929,180.147,194.281,162.519,153.257,136.672,142.979,144.861,136.456,123.144,122.493,124.488,136.294,146.692,129.361,125.067,92.1021,79.2163,81.5389,87.8192,90.9652,86.5655,90.0365,91.6675,81.2185,82.5983,84.9307,86.8772,83.0139,89.1189,91.0781,86.0537,82.3567,71.6001,63.1658,71.9581,67.9673,77.3745,77.7749,77.261,77.9074,73.5876,73.9856,75.5588,85.3331,102.049,100.391,101.568,98.6313],"xsol":[1.01875,1.45697,1.36168,1.35425,2.08252,1.99516,1.92802,1.32229,1.49613,1.10698,0.983762,1.14721,1.26726,1.62971,1.92816,1.66993,1.47594,2.09793,1.81025,2.07755,2.26624,2.57257,3.09768,2.1846,2.39859,2.5635,1.7973,1.53663,1.81205,1.1544,0.991164,0.709523,0.78257,0.798823,0.680406,0.494111,0.481743,0.507237,0.657744,0.794976,0.560482,0.49966,0.150899,0.065726,0.071412,0.089464,0.096492,0.080834,0.09086,0.095692,0.059944,0.061217,0.067348,0.071828,0.06184,0.077314,0.080789,0.066273,0.056581,0.031344,0.017966,0.026837,0.021947,0.032618,0.032596,0.031827,0.032729,0.026957,0.027389,0.029424,0.04129,0.064933,0.061911,0.063756,0.06021]},"d":{"days":["2025-09-11","2025-09-12","2025-09-13","2025-09-14","2025-09-15","2025-09-16","2025-09-17","2025-09-18","2025-09-19","2025-09-20","2025-09-21","2025-09-22","2025-09-23","2025-09-24","2025-09-25","2025-09-26","2025-09-27","2025-09-28","2025-09-29","2025-09-30","2025-10-01","2025-10-02","2025-10-03","2025-10-04","2025-10-05","2025-10-06","2025-10-07","2025-10-08","2025-10-09","2025-10-10","2025-10-11","2025-10-12","2025-10-13","2025-10-14","2025-10-15","2025-10-16","2025-10-17","2025-10-18","2025-10-19","2025-10-20","2025-10-21","2025-10-22","2025-10-23","2025-10-24","2025-10-25","2025-10-26","2025-10-27","2025-10-28","2025-10-29","2025-10-30","2025-10-31","2025-11-01","2025-11-02","2025-11-03","2025-11-04","2025-11-05","2025-11-06","2025-11-07","2025-11-08","2025-11-09","2025-11-10","2025-11-11","2025-11-12","2025-11-13","2025-11-14","2025-11-15","2025-11-16","2025-11-17","2025-11-18","2025-11-19","2025-11-20","2025-11-21","2025-11-22","2025-11-23","2025-11-24","2025-11-25","2025-11-26","2025-11-27","2025-11-28","2025-11-29","2025-11-30","2025-12-01","2025-12-02","2025-12-03","2025-12-04","2025-12-05","2025-12-06","2025-12-07","2025-12-08","2025-12-09","2025-12-10","2025-12-11","2025-12-12","2025-12-13","2025-12-14","2025-12-15","2025-12-16","2025-12-17","2025-12-18","2025-12-19","2025-12-20","2025-12-21","2025-12-22","2025-12-23","2025-12-24","2025-12-25","2025-12-26","2025-12-27","2025-12-28","2025-12-29","2025-12-30","2025-12-31","2026-01-01","2026-01-02","2026-01-03","2026-01-04","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-10","2026-01-11","2026-01-12","2026-01-13","2026-01-14","2026-01-15","2026-01-16","2026-01-17","2026-01-18","2026-01-19","2026-01-20","2026-01-21","2026-01-22","2026-01-23","2026-01-24","2026-01-25","2026-01-26","2026-01-27","2026-01-28","2026-01-29","2026-01-30","2026-01-31","2026-02-01","2026-02-02","2026-02-03","2026-02-04","2026-02-05","2026-02-06","2026-02-07","2026-02-08","2026-02-09","2026-02-10","2026-02-11","2026-02-12","2026-02-13","2026-02-14","2026-02-15","2026-02-16","2026-02-17","2026-02-18","2026-02-19","2026-02-20","2026-02-21","2026-02-22","2026-02-23","2026-02-24","2026-02-25","2026-02-26","2026-02-27","2026-02-28","2026-03-01","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-07","2026-03-08","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-14","2026-03-15","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-21","2026-03-22","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-28","2026-03-29","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-03","2026-04-04","2026-04-05","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-11","2026-04-12","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-18","2026-04-19","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-25","2026-04-26","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-02","2026-05-03","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-09","2026-05-10","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-16","2026-05-17","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-23","2026-05-24","2026-05-25","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-05-30","2026-05-31","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-06","2026-06-07","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-13","2026-06-14","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-19","2026-06-20","2026-06-21","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-27","2026-06-28","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-03","2026-07-04","2026-07-05","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-11","2026-07-12","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-18","2026-07-19","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-25","2026-07-26","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-01","2026-08-02","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-08","2026-08-09","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-15","2026-08-16","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-22","2026-08-23","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-29","2026-08-30","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-05","2026-09-06","2026-09-07","2026-09-08","2026-09-09","2026-09-10","2026-09-11"],"sol":[228.774,242.443,242.651,240.388,234.394,236.919,244.773,247.735,238.584,239.595,236.424,220.43,213.6,211.606,192.204,205.475,203.532,210.745,213.035,208.72,221.876,234.97,232.864,228.075,228.612,232.523,220.078,229.016,221.03,189.014,178.035,197.393,208.659,202.466,193.989,184.824,181.939,187.7,187.849,189.792,185.712,180.253,191.218,193.55,194.021,200.054,198.704,194.219,194.04,184.693,187.134,186.326,187.992,166.04,155.129,162.395,155.227,161.711,158.029,164.535,167.289,160.915,153.373,144.697,138.663,139.503,137.092,130.93,140.662,136.886,133.368,128.494,127.498,130.738,138.503,138.926,143.113,140.905,137.325,135.95,133.439,126.735,138.643,144.658,139.018,133.305,132.227,132.345,133.219,137.963,136.295,136.353,132.277,133.215,129.285,127.769,129.366,123.231,119.586,126.213,125.78,125.997,125.809,123.921,122.431,119.975,122.185,124.652,125.17,123.161,124.911,124.464,126.752,132.266,133.325,134.035,137.882,141.091,136.281,138.265,135.792,135.682,139.491,139.064,145.381,146.671,142.364,144.859,143.764,137.888,133.347,125.657,129.418,128.329,127.308,127.017,118.743,124.104,127.019,125.116,117.632,117.4,105.404,100.593,104.399,97.6356,91.929,78.0285,87.3835,87.6363,86.9198,86.7034,82.8999,79.2354,78.317,84.3074,88.045,86.114,86.4275,85.1512,81.567,82.5131,84.635,85.2155,82.7625,77.8215,78.9833,87.989,85.8846,81.8502,84.33,83.5935,86.5912,86.903,90.968,88.7772,84.681,83.2009,81.583,84.9845,85.8827,86.5843,86.79,88.205,88.025,92.3587,96.1829,94.6636,90.0643,88.8784,89.8355,87.395,86.1823,91.4398,90.7669,91.675,86.4753,83.0553,82.007,81.3697,82.4414,83.115,81.14,78.9155,80.3875,80.8145,81.8155,80.0312,85.723,82.5949,83.327,84.8218,84.9496,81.5587,86.6412,83.752,84.8939,89.095,88.8516,86.1696,83.535,85.3055,86.0497,86.8865,86.1471,86.2095,86.195,86.9341,84.8061,84.051,83.0152,83.0355,83.7501,84.2601,83.8993,84.0894,86.2885,89.1475,88.4202,91.9989,93.125,96.3984,97.3521,94.2765,91.1231,92.1448,89.1902,86.515,85.185,85.3235,84.2046,86.0758,87.2679,84.2951,85.6513,85.1777,84.9878,83.606,82.3156,82.045,81.9144,82.5901,82.3193,81.1842,74.1124,71.5302,68.8138,63.555,62.1771,66.408,66.7975,64.9199,63.1839,66.8006,66.7795,68.8762,71.2222,73.9507,73.4559,71.95,69.6445,69.7065,73.1734,72.4322,71.8767,69.6158,67.9662,67.5753,71.8215,70.3949,71.2754,74.9506,73.53,77.36,80.5827,82.2672,81.6627,81.4696,81.9,80.579,77.7716,78.0069,78.0618,76.7515,76.8579,74.9109,77.7838,77.2357,75.2514,74.9795,75.4715,76.3558,77.7861,78.0906,77.945,75.8541,73.8797,74.4598,76.6871,74.1522,73.7209,73.6057,74.4574,72.7843,71.8744,73.5315,73.4882,73.7178,73.9595,72.6318,73.6319,75.9423,76.2173,75.9141,76.2321,75.5556,76.1823,75.3154,75.277,74.5475,75.9376,76.9888,85.3052,87.6397,93.7044,93.8562,95.4078,98.9297,96.6049,102.073,109.14,104.137,105.646,101.907,103.014,99.964,100.476,103.963,101.945,103.182,106.496,103.887,103.346,101.575,98.6285,99.1075],"xsol":[2.69092,3.03848,3.04488,2.98157,2.81861,2.88655,3.09768,3.17704,2.91908,2.94751,2.85884,2.41458,2.23625,2.1846,1.69779,2.0192,1.97279,2.14348,2.19721,2.09667,2.39859,2.69686,2.64901,2.53937,2.55135,2.64231,2.36837,2.5635,2.39103,1.72087,1.50999,1.86176,2.06456,1.95188,1.7973,1.63057,1.57725,1.68058,1.68357,1.71781,1.64155,1.53663,1.74932,1.79806,1.80825,1.9408,1.91199,1.81484,1.81205,1.62294,1.67355,1.65954,1.69439,1.24182,1.0231,1.1544,1.02559,1.14034,1.07494,1.18934,1.24024,1.12665,0.991164,0.838324,0.738772,0.752689,0.715194,0.617479,0.770022,0.709523,0.657234,0.583381,0.569008,0.612827,0.7189,0.724991,0.78257,0.752489,0.702769,0.68406,0.647234,0.553903,0.716286,0.798823,0.720543,0.641064,0.626347,0.626475,0.639425,0.704725,0.680406,0.680489,0.621919,0.635769,0.5813,0.55768,0.581134,0.494111,0.447003,0.530684,0.52531,0.527454,0.525436,0.499911,0.481743,0.450966,0.478778,0.510186,0.51671,0.490093,0.512817,0.507237,0.536273,0.603999,0.618954,0.627182,0.678983,0.719588,0.657744,0.683142,0.650392,0.649308,0.700204,0.694526,0.778206,0.794976,0.736757,0.770667,0.755278,0.676409,0.613882,0.511729,0.560482,0.546045,0.533229,0.529003,0.42106,0.487531,0.523391,0.49966,0.407413,0.402372,0.266452,0.223245,0.251158,0.19648,0.150899,0.074052,0.092216,0.092949,0.090505,0.089857,0.077552,0.065726,0.062962,0.081775,0.093512,0.086556,0.08758,0.083405,0.071412,0.07427,0.081518,0.08337,0.075576,0.05933,0.062798,0.089464,0.082509,0.069832,0.076675,0.074238,0.083482,0.084422,0.096492,0.088862,0.075251,0.07018,0.064442,0.075535,0.078668,0.080834,0.081711,0.086313,0.085772,0.099902,0.11295,0.107188,0.09086,0.086555,0.089868,0.080857,0.077194,0.095003,0.092585,0.095692,0.077907,0.06633,0.06309,0.060763,0.063833,0.065929,0.059944,0.05275,0.056425,0.057457,0.059936,0.055531,0.069531,0.061217,0.063196,0.067117,0.0674,0.058483,0.071787,0.06427,0.067348,0.078489,0.077778,0.070502,0.06353,0.068137,0.069881,0.071828,0.069891,0.070052,0.07005,0.071994,0.066405,0.064465,0.06184,0.061858,0.063671,0.064976,0.064074,0.064492,0.07008,0.077314,0.075382,0.084883,0.088092,0.097393,0.100238,0.090826,0.080789,0.08394,0.075308,0.067501,0.063868,0.064217,0.061238,0.066273,0.069206,0.061611,0.065106,0.06388,0.063346,0.059705,0.056581,0.055593,0.055288,0.056959,0.056208,0.053375,0.036513,0.031344,0.026399,0.018512,0.016878,0.02126,0.021651,0.019734,0.017966,0.021668,0.021619,0.023769,0.026315,0.029328,0.028718,0.026837,0.023949,0.023989,0.028312,0.02743,0.026665,0.023949,0.021947,0.021498,0.026146,0.024506,0.025502,0.029671,0.027939,0.032618,0.036806,0.039206,0.038272,0.037976,0.03857,0.036684,0.032596,0.032972,0.033083,0.031251,0.031426,0.028623,0.032583,0.031827,0.029153,0.028771,0.029428,0.030622,0.03253,0.032924,0.032729,0.029941,0.027313,0.028075,0.031011,0.027684,0.027126,0.026957,0.02808,0.025906,0.024725,0.02684,0.026785,0.02708,0.027389,0.025711,0.02697,0.029882,0.030231,0.029855,0.030249,0.029424,0.030185,0.02916,0.029088,0.028213,0.029867,0.031125,0.04129,0.044387,0.052601,0.052727,0.054917,0.059954,0.056521,0.064933,0.076195,0.067917,0.0704,0.06426,0.066071,0.061128,0.061911,0.067473,0.064278,0.066189,0.071396,0.067341,0.066498,0.063756,0.059261,0.059964]}};var root=document.getElementById('w3');if(!root)return;
+var svg=root.querySelector('svg'),tip=root.querySelector('.tip'),tiles=root.querySelector('[data-tiles]');
+var NS='http://www.w3.org/2000/svg',W=760,H=300,M={l:56,r:108,t:40,b:28},PW=W-M.l-M.r,PH=H-M.t-M.b,V2='2026-06-17';
+var MG=['January','February','March','April','May','June','July','August','September','October','November','December'],MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function money(v){return '$'+(v<20?v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):Math.round(v).toLocaleString('en-US'))}
+function pc(v){return (v>=0?'+':'−')+Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1})+'%'}
+function dl(d){var p=d.split('-');return MG[+p[1]-1]+' '+(+p[2])+', '+p[0]}
+function unitP(v){return '$'+(v<1?v.toLocaleString('en-US',{maximumSignificantDigits:3}):v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}))}
+function ts(d){return Date.UTC(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10))}
+function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function build(v){var s=v==='v2'?D.d:D.w,i0=v==='v2'?s.days.indexOf(V2):0,bs=s.sol[i0],bx=s.xsol[i0];return{v:v,days:s.days.slice(i0),sol:s.sol.slice(i0).map(function(x){return x/bs*1000}),xs:s.xsol.slice(i0).map(function(x){return x/bx*1000}),solP:s.sol.slice(i0),xsP:s.xsol.slice(i0),log:v!=='v2'}}
+function mdd(a){var pk=a[0],w=0,wi=0;a.forEach(function(x,i){if(x>pk)pk=x;var d=x/pk-1;if(d<w){w=d;wi=i}});return[w,wi]}
+function draw(S){svg.textContent='';var n=S.days.length,T=S.days.map(ts),t0=T[0],t1=T[n-1],all=S.sol.concat(S.xs),lo=Math.min.apply(null,all),hi=Math.max.apply(null,all),yf,ticks=[];
+ if(S.log){lo=lo/1.4;hi=hi*1.2;var L0=Math.log(lo),L1=Math.log(hi);yf=function(v){return M.t+(L1-Math.log(v))/(L1-L0)*PH};ticks=[1,3,10,30,100,300,1000,3000,10000].filter(function(t){return t>=lo&&t<=hi})}
+ else{var pad=(hi-lo)*.08;lo=Math.max(0,lo-pad);hi=hi+pad;var raw=(hi-lo)/4,mag=Math.pow(10,Math.floor(Math.log10(raw))),step=[1,2,2.5,5,10].map(function(s){return s*mag}).filter(function(s){return s>=raw})[0];lo=Math.floor(lo/step)*step;hi=Math.ceil(hi/step)*step;yf=function(v){return M.t+(hi-v)/(hi-lo)*PH};for(var t=lo;t<=hi+1e-9;t+=step)ticks.push(t)}
+ var xf=function(t){return M.l+(t-t0)/(t1-t0)*PW};var g=el('g',{},svg);
+ ticks.forEach(function(t){var y=yf(t);el('line',{x1:M.l,x2:W-M.r,y1:y,y2:y,'class':'gr'},g);el('text',{x:M.l-8,y:y+3.5,'text-anchor':'end','class':'ax'},g).textContent='$'+t.toLocaleString('en-US')});
+ var d0=new Date(t0),yy=d0.getUTCFullYear(),mm=d0.getUTCMonth()+1;
+ while(true){if(mm>11){mm=0;yy++}var tm=Date.UTC(yy,mm,1);if(tm>t1)break;var mo=mm+1;if(!S.log||[1,4,7,10].indexOf(mo)>=0){var x=xf(tm);el('line',{x1:x,x2:x,y1:H-M.b,y2:H-M.b+4,'class':'tkl'},g);el('text',{x:x,y:H-8,'text-anchor':'middle','class':'ax'},g).textContent=MS[mm]+(S.log||mo===1?" '"+String(yy).slice(2):'')}mm++}
+ if(S.log){[['2025-10-10','Oct 10 · crash','middle',0],['2026-06-17','Jun 17 · V2','start',1]].forEach(function(e){var te=ts(e[0]);if(te<t0||te>t1)return;var x=xf(te);el('line',{x1:x,x2:x,y1:M.t-4,y2:H-M.b,'class':'ev'},g);el('text',{x:x+(e[2]==='start'?5:e[2]==='end'?-5:0),y:e[3]?M.t-10:M.t-24,'text-anchor':e[2],'class':'evl'},g).textContent=e[1]})}
+ var pts=function(a){return a.map(function(v,i){return xf(T[i]).toFixed(1)+','+yf(v).toFixed(1)}).join(' ')};
+ el('polyline',{points:pts(S.sol),'class':'ln sol'},svg);el('polyline',{points:pts(S.xs),'class':'ln xs'},svg);
+ var E=[{k:'SOL',v:S.sol[n-1],c:'sol'},{k:'xSOL',v:S.xs[n-1],c:'xs'}];E.forEach(function(e){e.y=yf(e.v);e.ly=e.y});
+ if(Math.abs(E[0].y-E[1].y)<18){var mid=(E[0].y+E[1].y)/2,a=E[0].y<E[1].y?0:1;E[a].ly=mid-10;E[1-a].ly=mid+10}
+ E.forEach(function(e){el('circle',{cx:xf(t1),cy:e.y,r:4,'class':'dot '+e.c},svg);el('text',{x:xf(t1)+10,y:e.ly+4,'class':'lb'},svg).textContent=e.k+' '+money(e.v)});
+ var cx=el('line',{y1:M.t,y2:H-M.b,'class':'cx',visibility:'hidden'},svg),d1=el('circle',{r:4,'class':'dot sol',visibility:'hidden'},svg),d2=el('circle',{r:4,'class':'dot xs',visibility:'hidden'},svg),hit=el('rect',{x:M.l,y:M.t,width:PW,height:PH,fill:'transparent'},svg);
+ hit.addEventListener('pointermove',function(ev){var r=svg.getBoundingClientRect(),k=W/r.width,x=(ev.clientX-r.left)*k,tt=t0+(x-M.l)/PW*(t1-t0),i=0,best=Infinity;for(var q=0;q<n;q++){var dq=Math.abs(T[q]-tt);if(dq<best){best=dq;i=q}}var X=xf(T[i]);
+  cx.setAttribute('x1',X);cx.setAttribute('x2',X);d1.setAttribute('cx',X);d1.setAttribute('cy',yf(S.sol[i]));d2.setAttribute('cx',X);d2.setAttribute('cy',yf(S.xs[i]));[cx,d1,d2].forEach(function(e){e.setAttribute('visibility','visible')});
+  tip.innerHTML='<b>'+dl(S.days[i])+'</b><span><i class="xs"></i>xSOL '+money(S.xs[i])+'<em>1 xSOL = '+unitP(S.xsP[i])+'</em></span><span><i class="sol"></i>SOL '+money(S.sol[i])+'<em>1 SOL = '+unitP(S.solP[i])+'</em></span>';tip.hidden=false;
+  var px=X/k,py=Math.min(yf(S.sol[i]),yf(S.xs[i]))/k,tw=tip.offsetWidth,left=px+14;if(left+tw>r.width-4)left=px-14-tw;tip.style.left=left+'px';tip.style.top=Math.max(4,py-12)+'px'});
+ hit.addEventListener('pointerleave',function(){tip.hidden=true;[cx,d1,d2].forEach(function(e){e.setAttribute('visibility','hidden')})});
+ var dd=mdd(S.xs),ds=mdd(S.sol);
+ tiles.innerHTML=[['$1,000 in SOL',money(S.sol[n-1]),pc((S.sol[n-1]/1000-1)*100)+' over the period'],['$1,000 in xSOL',money(S.xs[n-1]),pc((S.xs[n-1]/1000-1)*100)+' over the period'],['Max drawdown, xSOL',pc(dd[0]*100),'SOL: '+pc(ds[0]*100)]].map(function(t){return '<div class="card"><span class="lbl">'+t[0]+'</span><span class="num">'+t[1]+'</span><span class="sm">'+t[2]+'</span></div>'}).join('');
+ svg.setAttribute('aria-label',(S.log?'All time':'Since V2 launch')+': $1,000 in SOL became '+money(S.sol[n-1])+', in xSOL '+money(S.xs[n-1]))}
+root.querySelectorAll('[data-v]').forEach(function(b){b.addEventListener('click',function(){root.querySelectorAll('[data-v]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});draw(build(b.dataset.v))})});
+draw(build('all'));})();
+</script>
+</body></html>
