@@ -157,7 +157,9 @@
 #w1 .over{position:absolute;top:0;bottom:0;background:var(--accent);transition:width .12s,left .12s}
 #w1 .mk{position:absolute;top:-8px;bottom:-8px;width:2px;background:var(--text);z-index:3}
 #w1 .mk b{position:absolute;left:8px;top:-6px;white-space:nowrap;font:600 11px/1.5 "IBM Plex Mono",monospace;color:var(--text);background:#fff;padding:1px 5px;border:1px solid var(--line)}
-#w1 .endlbl{position:absolute;top:50%;transform:translateY(-50%);margin-left:9px;white-space:nowrap;font:700 14px Geist,sans-serif;color:var(--text);z-index:2;transition:left .12s}
+#w1 .endlbl{position:absolute;top:50%;white-space:nowrap;font:700 14px Geist,sans-serif;color:var(--text);z-index:2;transition:left .12s;padding:2px 6px;background:rgba(255,255,255,.88);border-radius:2px}
+#w1 .endlbl.out{transform:translateY(-50%);margin-left:9px}
+#w1 .endlbl.in{transform:translate(-100%,-50%);margin-left:-9px}
 #w1 .scale{display:flex;justify-content:space-between;margin:6px 0 20px;font:500 11px "IBM Plex Mono",monospace;color:var(--sub)}
 #w1 .two{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
 #w1 .side{padding:13px 15px}
@@ -184,7 +186,7 @@
   <div class="fill" data-fill style="width:50%"></div>
   <div class="over" data-over style="left:50%;width:40%"></div>
   <div class="mk" style="left:50%"><b>$100 comes out first</b></div>
-  <div class="endlbl" data-end style="left:90%">$180 in the box</div>
+  <div class="endlbl in" data-end style="left:90%">$180 in the box</div>
  </div>
  <div class="scale"><span>$0</span><span>$100</span><span>$200</span></div>
 
@@ -214,8 +216,10 @@ function draw(){
  q("[data-fill]").style.width=(Math.min(box,100)/MAX*100)+"%";
  q("[data-over]").style.left="50%";
  q("[data-over]").style.width=(Math.max(left,0)/MAX*100)+"%";
- q("[data-end]").style.left=(box/MAX*100)+"%";
- q("[data-end]").textContent=money(box)+" in the box";
+ var endEl=q("[data-end]"), fr=box/MAX;
+ endEl.style.left=(fr*100)+"%";
+ endEl.className="endlbl "+(fr>0.62?"in":"out");
+ endEl.textContent=money(box)+" in the box";
  q("[data-left]").textContent=money(Math.max(left,0));
  var el=q("[data-leftch]"); el.textContent=pct(ch); el.className=ch<0?"dn":(ch>0?"up":"flat");
  var v;
