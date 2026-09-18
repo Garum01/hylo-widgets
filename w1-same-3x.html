@@ -157,9 +157,9 @@
  <div class="seg" role="tablist"><button type="button" data-v="cex" aria-pressed="true">On an exchange</button><button type="button" data-v="hylo" aria-pressed="false">In Hylo</button></div>
  <div class="p1-lg"><span><i style="background:var(--stable)"></i><b data-l1></b></span><span><i style="background:var(--accent)"></i><b data-l2></b></span></div>
  <div class="p1-plot" role="img" data-alt>
-  <div class="p1-col"><span class="p1-tot">$130<small>pool</small></span><div class="p1-x" style="height:33px">$30</div><div class="p1-s" style="height:110px">$100</div></div>
-  <div class="p1-col"><span class="p1-tot">$150<small>pool</small></span><div class="p1-x" style="height:55px">$50</div><div class="p1-s" style="height:110px">$100</div></div>
-  <div class="p1-col"><span class="p1-tot">$180<small>pool</small></span><div class="p1-x" style="height:88px">$80</div><div class="p1-s" style="height:110px">$100</div></div>
+  <div class="p1-col"><span class="p1-tot">$130<small data-unit>pool</small></span><div class="p1-x" style="height:33px">$30</div><div class="p1-s" style="height:110px">$100</div></div>
+  <div class="p1-col"><span class="p1-tot">$150<small data-unit>pool</small></span><div class="p1-x" style="height:55px">$50</div><div class="p1-s" style="height:110px">$100</div></div>
+  <div class="p1-col"><span class="p1-tot">$180<small data-unit>pool</small></span><div class="p1-x" style="height:88px">$80</div><div class="p1-s" style="height:110px">$100</div></div>
  </div>
  <div class="p1-cap">
   <div><b>Price ~−13%</b><span class="dn" data-c1></span></div>
@@ -179,12 +179,12 @@ var D={
    l1:"Borrowed from the exchange: $100", l2:"Your own money: $50",
    c1:"Your $50 \u25bc \u221240%", c2:"$50 of your own, $100 borrowed", c3:"Your $50 \u25b2 +60%",
    note:"<b>The $100 is a debt.</b> Fall far enough and the exchange closes the position to get it back, whatever the price does afterwards.",
-   alt:"Three states of a $150 position. Down about 13%: your share $30. Start: your share $50. Up 20%: your share $80."},
+   unit:"position", alt:"Three states of a $150 position. Down about 13%: your share $30. Start: your share $50. Up 20%: your share $80."},
  hylo:{sub:"One shared pool of $150. The stablecoin side has the first claim on $100, and the xAsset gets everything above it.",
    l1:"Stablecoin claim: $100", l2:"xAsset holders: $50",
    c1:"xAsset \u25bc \u221240%", c2:"$50 in, riding $150 of the asset", c3:"xAsset \u25b2 +60%",
    note:"<b>The $100 is a claim, not a debt.</b> There is no lender and nothing to repay, so nothing can force the position shut. The share simply shrinks and grows.",
-   alt:"Three states of a $150 pool. Down about 13%: xAsset $30. Start: xAsset $50. Up 20%: xAsset $80."}
+   unit:"pool", alt:"Three states of a $150 pool. Down about 13%: xAsset $30. Start: xAsset $50. Up 20%: xAsset $80."}
 };
 var r=document.getElementById("w1")||document;
 var q=function(s){return r.querySelector(s)};
@@ -194,6 +194,7 @@ function paint(v){var d=D[v];
  q("[data-c1]").textContent=d.c1; q("[data-c2]").textContent=d.c2; q("[data-c3]").textContent=d.c3;
  q("[data-note]").innerHTML=d.note;
  q("[data-alt]").setAttribute("aria-label",d.alt);
+ r.querySelectorAll("[data-unit]").forEach(function(u){u.textContent=d.unit});
  r.querySelectorAll("[data-v]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.v===v))});
 }
 r.querySelectorAll("[data-v]").forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.v)})});
