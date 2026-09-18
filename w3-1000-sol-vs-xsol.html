@@ -158,7 +158,7 @@ function draw(S){svg.textContent='';var n=S.days.length,T=S.days.map(ts),t0=T[0]
  ticks.forEach(function(t){var y=yf(t);el('line',{x1:M.l,x2:W-M.r,y1:y,y2:y,'class':'gr'},g);el('text',{x:M.l-8,y:y+3.5,'text-anchor':'end','class':'ax'},g).textContent='$'+t.toLocaleString('en-US')});
  var d0=new Date(t0),yy=d0.getUTCFullYear(),mm=d0.getUTCMonth()+1;
  while(true){if(mm>11){mm=0;yy++}var tm=Date.UTC(yy,mm,1);if(tm>t1)break;var mo=mm+1;if(!S.log||[1,4,7,10].indexOf(mo)>=0){var x=xf(tm);el('line',{x1:x,x2:x,y1:H-M.b,y2:H-M.b+4,'class':'tkl'},g);el('text',{x:x,y:H-8,'text-anchor':'middle','class':'ax'},g).textContent=MS[mm]+(S.log||mo===1?" '"+String(yy).slice(2):'')}mm++}
- if(S.log){[['2025-10-10','Oct 10 · crash','middle',0],['2026-07-09','Jun 17 · V2','start',1]].forEach(function(e){var te=ts(e[0]);if(te<t0||te>t1)return;var x=xf(te);el('line',{x1:x,x2:x,y1:M.t-4,y2:H-M.b,'class':'ev'},g);el('text',{x:x+(e[2]==='start'?5:e[2]==='end'?-5:0),y:e[3]?M.t-10:M.t-24,'text-anchor':e[2],'class':'evl'},g).textContent=e[1]})}
+ if(S.log){[['2025-10-10','Oct 10 · crash','middle',0],['2026-07-09','Jul 9 · V2','start',1]].forEach(function(e){var te=ts(e[0]);if(te<t0||te>t1)return;var x=xf(te);el('line',{x1:x,x2:x,y1:M.t-4,y2:H-M.b,'class':'ev'},g);el('text',{x:x+(e[2]==='start'?5:e[2]==='end'?-5:0),y:e[3]?M.t-10:M.t-24,'text-anchor':e[2],'class':'evl'},g).textContent=e[1]})}
  var pts=function(a){return a.map(function(v,i){return xf(T[i]).toFixed(1)+','+yf(v).toFixed(1)}).join(' ')};
  el('polyline',{points:pts(S.sol),'class':'ln sol'},svg);el('polyline',{points:pts(S.xs),'class':'ln xs'},svg);
  var E=[{k:'SOL',v:S.sol[n-1],c:'sol'},{k:'xSOL',v:S.xs[n-1],c:'xs'}];E.forEach(function(e){e.y=yf(e.v);e.ly=e.y});
